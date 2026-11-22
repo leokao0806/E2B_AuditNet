@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+# large / regenerable data: share embeddings through Google Drive, not git
+data/raw/
+data/embeddings/*.npy
+data/embeddings/*.json
+tools/
+# model checkpoints & large OOF/prediction outputs
+checkpoints/
+outputs/

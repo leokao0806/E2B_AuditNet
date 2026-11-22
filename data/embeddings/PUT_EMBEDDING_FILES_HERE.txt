@@ -1,0 +1,1 @@
+Copy the 4 files from embeddings_650M/ (and optionally embeddings_150M_optional/) into this folder.

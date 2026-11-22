@@ -1,0 +1,344 @@
+{
+ "meta": {
+  "version": 1,
+  "created": "2026-11-20",
+  "fold_id_meaning": {
+   "0..K-1": "cross-validation / out-of-fold partitions (Train_HHblits)",
+   "-1": "validation partition (Train_HHblits): class-weight study, routing thresholds, early stopping",
+   "-2": "CB513 held-out test set: evaluate only, never tune on it"
+  },
+  "params": {
+   "k_folds": 5,
+   "val_fraction": 0.1,
+   "seed": 2026
+  },
+  "homology": {
+   "cb513_leakage_rule": "E-value <= 0.001, identity >= 25%, alignment >= 20 residues",
+   "train_grouping_rule": "E-value <= 0.001, identity >= 30%, alignment >= 20 residues, covering >= 50% of the shorter protein",
+   "status": "complete (exact/substring + MMseqs2 CB513-vs-Train and Train-vs-Train)",
+   "cb513_vs_train_hits_passing_rule": 470,
+   "train_vs_train_edges": 3384,
+   "train_groups": 9376,
+   "largest_group": 713,
+   "groups_with_more_than_one_protein": 316,
+   "cb513_vs_train_by_identity": [
+    {
+     "min_identity": 0.25,
+     "pairs": 470,
+     "cb513_chains": 203,
+     "train_chains": 323
+    },
+    {
+     "min_identity": 0.3,
+     "pairs": 202,
+     "cb513_chains": 108,
+     "train_chains": 154
+    },
+    {
+     "min_identity": 0.4,
+     "pairs": 96,
+     "cb513_chains": 47,
+     "train_chains": 66
+    },
+    {
+     "min_identity": 0.5,
+     "pairs": 72,
+     "cb513_chains": 27,
+     "train_chains": 45
+    },
+    {
+     "min_identity": 0.9,
+     "pairs": 42,
+     "cb513_chains": 13,
+     "train_chains": 29
+    }
+   ]
+  },
+  "source_files": {
+   "Train_HHblits.npz": {
+    "sha256": "a6e08d113848382b8436f71ece943434f38484d92d95e72cd700a326011188da",
+    "bytes": 432810741
+   },
+   "CB513_HHblits.npz": {
+    "sha256": "88908e2db238247a97027cd01e1cc623b31c41ef540ceca3d6de9affb6c6d2e2",
+    "bytes": 23006934
+   }
+  },
+  "notes": [
+   "uid is the unique key (train_NNNNN / cb513_NNNNN = index in the original .npz). pdb_id is not unique in CB513 (513 regions from 434 chains).",
+   "CB513 entries cb513_00299 (1rsy-A) and cb513_00377 (2alp-A) have an all-zero evaluation mask, so they contribute no scored residues."
+  ]
+ },
+ "partitions": {
+  "fold 0": {
+   "proteins": 2124,
+   "residues": 490359,
+   "valid_residues": 450321,
+   "median_length": 208.0,
+   "max_length": 1009,
+   "proteins_longer_than_1022": 0,
+   "q8_counts": {
+    "G": 17167,
+    "H": 156163,
+    "I": 2426,
+    "B": 4210,
+    "E": 98615,
+    "S": 35359,
+    "T": 49184,
+    "C": 87197
+   },
+   "q8_percent": {
+    "G": 3.81,
+    "H": 34.68,
+    "I": 0.54,
+    "B": 0.93,
+    "E": 21.9,
+    "S": 7.85,
+    "T": 10.92,
+    "C": 19.36
+   },
+   "G_next_to_H": 3605,
+   "G_next_to_H_percent_of_G": 21.0
+  },
+  "fold 1": {
+   "proteins": 1831,
+   "residues": 480498,
+   "valid_residues": 450321,
+   "median_length": 224.0,
+   "max_length": 1632,
+   "proteins_longer_than_1022": 8,
+   "q8_counts": {
+    "G": 17171,
+    "H": 155211,
+    "I": 2594,
+    "B": 4722,
+    "E": 97239,
+    "S": 36695,
+    "T": 48817,
+    "C": 87872
+   },
+   "q8_percent": {
+    "G": 3.81,
+    "H": 34.47,
+    "I": 0.58,
+    "B": 1.05,
+    "E": 21.59,
+    "S": 8.15,
+    "T": 10.84,
+    "C": 19.51
+   },
+   "G_next_to_H": 3656,
+   "G_next_to_H_percent_of_G": 21.3
+  },
+  "fold 2": {
+   "proteins": 1842,
+   "residues": 479728,
+   "valid_residues": 450321,
+   "median_length": 216.0,
+   "max_length": 1475,
+   "proteins_longer_than_1022": 8,
+   "q8_counts": {
+    "G": 17630,
+    "H": 153085,
+    "I": 2493,
+    "B": 4639,
+    "E": 98039,
+    "S": 37076,
+    "T": 48605,
+    "C": 88754
+   },
+   "q8_percent": {
+    "G": 3.91,
+    "H": 33.99,
+    "I": 0.55,
+    "B": 1.03,
+    "E": 21.77,
+    "S": 8.23,
+    "T": 10.79,
+    "C": 19.71
+   },
+   "G_next_to_H": 3640,
+   "G_next_to_H_percent_of_G": 20.6
+  },
+  "fold 3": {
+   "proteins": 1836,
+   "residues": 478443,
+   "valid_residues": 450321,
+   "median_length": 221.0,
+   "max_length": 1267,
+   "proteins_longer_than_1022": 7,
+   "q8_counts": {
+    "G": 17401,
+    "H": 152307,
+    "I": 2317,
+    "B": 4865,
+    "E": 98275,
+    "S": 36732,
+    "T": 49962,
+    "C": 88462
+   },
+   "q8_percent": {
+    "G": 3.86,
+    "H": 33.82,
+    "I": 0.51,
+    "B": 1.08,
+    "E": 21.82,
+    "S": 8.16,
+    "T": 11.09,
+    "C": 19.64
+   },
+   "G_next_to_H": 3679,
+   "G_next_to_H_percent_of_G": 21.1
+  },
+  "fold 4": {
+   "proteins": 1838,
+   "residues": 480004,
+   "valid_residues": 450320,
+   "median_length": 222.0,
+   "max_length": 1491,
+   "proteins_longer_than_1022": 11,
+   "q8_counts": {
+    "G": 17036,
+    "H": 156906,
+    "I": 2474,
+    "B": 4543,
+    "E": 96365,
+    "S": 36796,
+    "T": 48889,
+    "C": 87311
+   },
+   "q8_percent": {
+    "G": 3.78,
+    "H": 34.84,
+    "I": 0.55,
+    "B": 1.01,
+    "E": 21.4,
+    "S": 8.17,
+    "T": 10.86,
+    "C": 19.39
+   },
+   "G_next_to_H": 3511,
+   "G_next_to_H_percent_of_G": 20.6
+  },
+  "all CV folds": {
+   "proteins": 9471,
+   "residues": 2409032,
+   "valid_residues": 2251604,
+   "median_length": 217.0,
+   "max_length": 1632,
+   "proteins_longer_than_1022": 34,
+   "q8_counts": {
+    "G": 86405,
+    "H": 773672,
+    "I": 12304,
+    "B": 22979,
+    "E": 488533,
+    "S": 182658,
+    "T": 245457,
+    "C": 439596
+   },
+   "q8_percent": {
+    "G": 3.84,
+    "H": 34.36,
+    "I": 0.55,
+    "B": 1.02,
+    "E": 21.7,
+    "S": 8.11,
+    "T": 10.9,
+    "C": 19.52
+   },
+   "G_next_to_H": 18091,
+   "G_next_to_H_percent_of_G": 20.9
+  },
+  "validation (-1)": {
+   "proteins": 1053,
+   "residues": 261243,
+   "valid_residues": 245405,
+   "median_length": 211.0,
+   "max_length": 1108,
+   "proteins_longer_than_1022": 1,
+   "q8_counts": {
+    "G": 9484,
+    "H": 85588,
+    "I": 1420,
+    "B": 2302,
+    "E": 53397,
+    "S": 19514,
+    "T": 26551,
+    "C": 47149
+   },
+   "q8_percent": {
+    "G": 3.86,
+    "H": 34.88,
+    "I": 0.58,
+    "B": 0.94,
+    "E": 21.76,
+    "S": 7.95,
+    "T": 10.82,
+    "C": 19.21
+   },
+   "G_next_to_H": 2056,
+   "G_next_to_H_percent_of_G": 21.7
+  },
+  "CB513 test (-2)": {
+   "proteins": 513,
+   "residues": 144360,
+   "valid_residues": 83772,
+   "median_length": 238.0,
+   "max_length": 874,
+   "proteins_longer_than_1022": 0,
+   "q8_counts": {
+    "G": 3098,
+    "H": 25706,
+    "I": 474,
+    "B": 1107,
+    "E": 17632,
+    "S": 8231,
+    "T": 9756,
+    "C": 17768
+   },
+   "q8_percent": {
+    "G": 3.7,
+    "H": 30.69,
+    "I": 0.57,
+    "B": 1.32,
+    "E": 21.05,
+    "S": 9.83,
+    "T": 11.65,
+    "C": 21.21
+   },
+   "G_next_to_H": 555,
+   "G_next_to_H_percent_of_G": 17.9
+  },
+  "excluded": {
+   "proteins": 324,
+   "residues": 108163,
+   "valid_residues": 101838,
+   "median_length": 293.5,
+   "max_length": 1073,
+   "proteins_longer_than_1022": 1,
+   "q8_counts": {
+    "G": 4650,
+    "H": 32302,
+    "I": 498,
+    "B": 1254,
+    "E": 21909,
+    "S": 8859,
+    "T": 12231,
+    "C": 20135
+   },
+   "q8_percent": {
+    "G": 4.57,
+    "H": 31.72,
+    "I": 0.49,
+    "B": 1.23,
+    "E": 21.51,
+    "S": 8.7,
+    "T": 12.01,
+    "C": 19.77
+   },
+   "G_next_to_H": 761,
+   "G_next_to_H_percent_of_G": 16.4
+  }
+ }
+}

@@ -1,0 +1,113 @@
+{
+  "files": {
+    "Train_HHblits.npz": {
+      "sha256": "a6e08d113848382b8436f71ece943434f38484d92d95e72cd700a326011188da",
+      "bytes": 432810741
+    },
+    "CB513_HHblits.npz": {
+      "sha256": "88908e2db238247a97027cd01e1cc623b31c41ef540ceca3d6de9affb6c6d2e2",
+      "bytes": 23006934
+    }
+  },
+  "train": {
+    "source": "train",
+    "n_proteins": 10848,
+    "n_unique_pdb_ids": 10848,
+    "length": {
+      "min": 20,
+      "median": 219.0,
+      "mean": 256.1,
+      "max": 1632,
+      "n_longer_than_1022": 36
+    },
+    "residues_total": 2778438,
+    "residues_unknown_X": 16799,
+    "residues_disordered": 179591,
+    "residues_without_q8_label": 0,
+    "residues_disordered_but_labelled": 179591,
+    "residues_eval_mask_0": 0,
+    "residues_valid": 2598847,
+    "q8_counts_valid": {
+      "G": 100539,
+      "H": 891562,
+      "I": 14222,
+      "B": 26535,
+      "E": 563839,
+      "S": 211031,
+      "T": 284239,
+      "C": 506880
+    },
+    "q8_percent_valid": {
+      "G": 3.87,
+      "H": 34.31,
+      "I": 0.55,
+      "B": 1.02,
+      "E": 21.7,
+      "S": 8.12,
+      "T": 10.94,
+      "C": 19.5
+    },
+    "proteins_with_zero_valid_residues": 0
+  },
+  "cb513": {
+    "source": "cb513",
+    "n_proteins": 513,
+    "n_unique_pdb_ids": 434,
+    "length": {
+      "min": 20,
+      "median": 238.0,
+      "mean": 281.4,
+      "max": 874,
+      "n_longer_than_1022": 0
+    },
+    "residues_total": 144360,
+    "residues_unknown_X": 147,
+    "residues_disordered": 3529,
+    "residues_without_q8_label": 0,
+    "residues_disordered_but_labelled": 3529,
+    "residues_eval_mask_0": 60024,
+    "residues_valid": 83772,
+    "q8_counts_valid": {
+      "G": 3098,
+      "H": 25706,
+      "I": 474,
+      "B": 1107,
+      "E": 17632,
+      "S": 8231,
+      "T": 9756,
+      "C": 17768
+    },
+    "q8_percent_valid": {
+      "G": 3.7,
+      "H": 30.69,
+      "I": 0.57,
+      "B": 1.32,
+      "E": 21.05,
+      "S": 9.83,
+      "T": 11.65,
+      "C": 21.21
+    },
+    "proteins_with_zero_valid_residues": 2
+  },
+  "exact_overlap": {
+    "train_duplicate_sequences": 0,
+    "cb513_identical_to_train": [
+      [
+        "cb513_00331",
+        [
+          "train_01079"
+        ]
+      ],
+      [
+        "cb513_00360",
+        [
+          "train_01338"
+        ]
+      ]
+    ],
+    "cb513_substring_of_train": [
+      "cb513_00229"
+    ],
+    "train_substring_of_cb513": []
+  }
+}

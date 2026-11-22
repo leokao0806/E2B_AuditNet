@@ -1,0 +1,8 @@
+# Install torch for your GPU first (https://pytorch.org/get-started/locally/), e.g.
+#   pip install torch --index-url https://download.pytorch.org/whl/cu130
+# Tested: Python 3.12, torch 2.14.1+cu130, numpy 2.5.5, fair-esm 2.0.0, RTX 5060 Laptop (8 GB)
+torch>=2.1
+numpy>=1.24
+fair-esm==2.0.0
+matplotlib
+pytest
