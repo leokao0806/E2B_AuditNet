@@ -33,6 +33,21 @@ GitHub is the single source of truth for code, splits (`splits/`), and processed
   - Implement **Frozen ESM-2 (1280-dim) -> 1-layer BiLSTM -> Linear Q8 classifier** using `make_oof_loaders(k=0..4)` and `F.cross_entropy(..., ignore_index=-100)`.
   - Train 5 folds (`k=0..4`, early-stopping on `val_dl = make_loader([-1])`) and save **Out-of-Fold (OOF) Softmax probabilities** (`[L, 8]`) for every training protein keyed by **`uid`** (e.g., `train_00001`, **not** `pdb_id`).
   - Also export final Baseline predictions on `val (-1)` and `CB513 (-2)` for Roles 5 & 6.
+
+  Run `python scripts/train_baseline.py` after placing the 650M embedding cache in
+  `data/embeddings/`. The script trains the five OOF models and one final model,
+  reuses completed checkpoints on reruns, and writes `outputs/baseline_summary.json`.
+  The default is a 256-unit, one-layer BiLSTM in each direction, with dropout 0.2,
+  AdamW, a batch size of 16, and validation-loss early stopping. Adjust these with
+  `python scripts/train_baseline.py --help` before the first run.
+
+  Predictions are `outputs/baseline_oof.npy`, `baseline_val.npy`, and
+  `baseline_cb513.npy`, each paired with a same-stem `.index.json`. Read a
+  protein's `[L, 8]` Q8 probabilities with
+  `PredictionStore("outputs/baseline_oof.npy").get(uid)` from `e2b.baseline`.
+  The index also records
+  fold IDs, Q8 class order, and the split hash. OOF rows cover folds 0–4 exactly once;
+  the validation and CB513 files come from the final model trained on all five folds.
 - **Role 4 (Class-Weighted Baseline):**
   - Reuse Role 3's exact architecture and folds, apply class-weighted cross-entropy loss tuned on `val (-1)`, and export predictions on `CB513 (-2)` for Role 6.
 - **Role 5 (H/G Specialist & Routing):**

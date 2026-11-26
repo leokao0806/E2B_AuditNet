@@ -1,7 +1,7 @@
 [project]
 name = "e2b-auditnet"
 version = "0.1.0"
-description = "E2B-AuditNet: data pipeline, ESM-2 cache and shared DataLoader (Roles 1-2)"
+description = "E2B-AuditNet: data pipeline, ESM-2 cache and Q8 BiLSTM baseline"
 requires-python = ">=3.10"
 dependencies = ["numpy", "torch", "fair-esm", "matplotlib"]
 
