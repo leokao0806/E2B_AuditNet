@@ -2,7 +2,7 @@
 
 ## Team Setup & Workflow (Start Here — Roles 3–6)
 
-GitHub is the single source of truth for code, splits (`splits/`), and processed targets (`data/processed/`). Only the large ESM-2 embedding files (`data/embeddings/*.npy` + `*.index.json`) are stored on Google Drive.
+GitHub is the single source of truth for code, splits (`splits/`), and processed targets (`data/processed/`). Use the shared Drive for the large ESM-2 embedding files and for the model checkpoints and prediction archives exchanged between roles.
 
 ### 1. Setup (~10 minutes + Drive download)
 
@@ -52,6 +52,10 @@ GitHub is the single source of truth for code, splits (`splits/`), and processed
   - Reuse Role 3's exact architecture and folds, apply class-weighted cross-entropy loss tuned on `val (-1)`, and export predictions on `CB513 (-2)` for Role 6.
 - **Role 5 (H/G Specialist & Routing):**
   - Train the H/G Specialist on frozen ESM-2 embeddings + Role 3's OOF probabilities + local sequence window features; tune ambiguous H/G routing thresholds strictly on `val (-1)` and export combined **E2B-AuditNet** predictions on `CB513 (-2)`.
+  - With Leo's four 650M cache files in `data/embeddings/` and Sujal's six baseline files in `outputs/`, run `python scripts/train_specialist.py`. The script fits a small binary head on valid H/G residues in the five OOF folds. Each input contains the central embedding and five baseline Q8 vectors (the residue and its two neighbors on each side).
+  - A residue is eligible when H and G are the two highest baseline scores with distinct values and their difference is at most 0.80. Validation selects the training epoch by binary loss, then selects the routing thresholds by G F1 subject to no loss in Q8. Keeping the baseline is also an option.
+  - The fitted head is in `checkpoints/hg_specialist.pt`. Frozen routing settings and validation results are in `outputs/role5/`. Run `python scripts/train_specialist.py --export-cb513` to apply the saved head and settings to CB513. Role 6 can open `outputs/role5/auditnet_cb513.npy` and its sidecar with `PredictionStore`. A decision override swaps the baseline H and G scores. The exported scores support Q8 decisions and should not be interpreted as calibrated probabilities.
+  - Role 6 can evaluate the saved predictions directly. See the [Role 5 handoff](docs/report_methods_specialist.md) for the archive layout, selected rule and expected results.
 - **Role 6 (Evaluation & Audit):**
   - Evaluate all three systems (*Baseline* vs. *Class-Weighted* vs. *E2B-AuditNet*) on `CB513 (-2)` using `valid_mask` (already applies disorder + CB513 eval mask): overall Q8/Q3, G/H Precision/Recall/F1, 8x8 confusion matrices, and SecNet-style H/G boundary & net-correction audit.
 - **Git hygiene:** Save large model weights and OOF/prediction dumps under `checkpoints/` or `outputs/` (both are gitignored).
